@@ -1,8 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from .views import (
-    UserViewSet, TableSalonViewSet, ReservationViewSet,
-    MenuViewSet, NotificationViewSet, RapportViewSet, HoraireViewSet
-)
+from api.views import UserViewSet, TableSalonViewSet, ReservationViewSet, MenuViewSet, NotificationViewSet, RapportViewSet, HoraireViewSet
+
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
