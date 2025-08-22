@@ -17,4 +17,4 @@ class Rapport(models.Model):
         return {"data": "JSON"} 
 
     def __str__(self):
-        return f"Rapport {self.id} pour {self.periode}"
+        return f"Rapport pour {self.periode}"
