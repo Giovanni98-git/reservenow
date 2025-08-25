@@ -2,12 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    role = models.CharField(
-        max_length=10,
-        choices=[('client', 'Client'), ('admin', 'Admin')],
-        default='client'
+    ROLE_CHOICES = (
+        ('client', 'Client'),
+        ('admin', 'Admin'),
     )
-    # Les champs first_name, last_name, email, password sont hérités d'AbstractUser.
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='client')
 
     def __str__(self):
         return self.username

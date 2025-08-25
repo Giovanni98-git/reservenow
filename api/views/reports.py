@@ -1,12 +1,12 @@
 from rest_framework import viewsets
-from api.models import Rapport
-from api.serializers import RapportSerializer
+from api.models import Report
+from api.serializers import ReportSerializer
 
 # class IsAdmin(permissions.BasePermission):
 #     def has_permission(self, request, view):
 #         return request.user.role == 'admin'
 
-class RapportViewSet(viewsets.ModelViewSet):
-    queryset = Rapport.objects.all()
-    serializer_class = RapportSerializer
+class ReportViewSet(viewsets.ModelViewSet):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
     #permission_classes = [IsAdmin]

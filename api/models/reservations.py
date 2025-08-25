@@ -1,18 +1,18 @@
 from django.db import models 
 from .users import User
-from .tableSalons import TableSalon
+from .tableSaloons import TableSaloon
 
 class Reservation(models.Model):
     date = models.DateField()
-    heure = models.TimeField()
-    nb_personnes = models.PositiveIntegerField()
-    statut = models.CharField(
+    hour = models.TimeField()
+    people_count = models.PositiveIntegerField()
+    status = models.CharField(
         max_length=20,
-        choices=[('confirm', 'Confirmée'), ('completed', 'Complétée'), ('canceled', 'Annulée')],
+        choices=[('confirm', 'Confirm'), ('completed', 'Completed'), ('canceled', 'Canceled')],
         default='confirm'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
-    table_salon = models.ForeignKey(TableSalon, on_delete=models.SET_NULL, null=True, related_name='reservations')
+    table_saloon = models.ForeignKey(TableSaloon, on_delete=models.SET_NULL, null=True, related_name='reservations')
 
     def __str__(self):
-        return f"Réservation par {self.user} le {self.date} à {self.heure}"
+        return f"Book by {self.user.first_name} {self.user.last_name} on {self.date} at {self.hour} "

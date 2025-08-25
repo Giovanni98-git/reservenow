@@ -1,7 +1,7 @@
-from .users import UserSerializer
-from .tableSalons import TableSalonSerializer
+from .users import UserSerializer, AdminUpdateRoleSerializer, RegisterSerializer
+from .tableSaloons import TableSaloonSerializer
 from .reservations import ReservationSerializer
 from .menus import MenuSerializer
 from .notifications import NotificationSerializer
-from .rapports import RapportSerializer
-from .horaires import HoraireSerializer
+from .reports import ReportSerializer
+from .schedule import ScheduleSerializer
