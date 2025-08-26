@@ -9,12 +9,12 @@ class Notification(models.Model):
         choices=[('email', 'Email'), ('sms', 'SMS')]
     )
     message = models.TextField()
-    date_envoi = models.DateTimeField(default=timezone.now)
+    sending_date = models.DateTimeField(default=timezone.now)
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, null=True, blank=True, related_name='notifications')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
 
-    def envoyer(self):
-        # Logique d'envoi (
+    def send(self):
+        # Logic to send notification for client
         return True 
 
     def __str__(self):

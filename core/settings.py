@@ -11,9 +11,15 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    #'cors_headers',
+   
+    'corsheaders',
     'django_filters',
     'drf_yasg',
     'api',  
@@ -88,14 +95,13 @@ DATABASES = {
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'reservenow-database',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',  
-#         'PORT': '5432',        
-#     }
-# }
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DATABASE_NAME"),
+#         'USER': env("DATABASE_USER"),
+#         'PASSWORD': env("DATABASE_PASSWORD"),
+#         'HOST': env("DATABASE_HOST"),
+#         'PORT': env("DATABASE_PORT"),
+#     }}
 
 
 # Password validation

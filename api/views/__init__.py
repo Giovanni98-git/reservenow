@@ -1,7 +1,7 @@
-from .users import UserViewSet
-from .tableSalons import TableSalonViewSet
+from .users import UserListView, UserDetailView, RegisterView, AdminUpdateRoleView
+from .tableSaloons import TableSaloonViewSet
 from .reservations import ReservationViewSet
 from .menus import MenuViewSet
 from .notifications import NotificationViewSet
-from .rapports import RapportViewSet
-from .horaires import HoraireViewSet
+from .reports import ReportViewSet
+from .schedules import ScheduleViewSet
