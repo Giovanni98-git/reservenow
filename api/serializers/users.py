@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from api.models import User
+from django.contrib.auth.models import Group
 
-# Custom serializer for login with email
+# --- Custom serializer for login with email ---
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = User.USERNAME_FIELD  # Use email as authentication field
 
@@ -12,19 +13,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         except Exception:
             raise serializers.ValidationError("Incorrect email or password.")
 
-# Serializer for registration
+
+# --- Serializer for registration ---
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirm = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'password', 'password_confirm', 'first_name', 'last_name']
-
-    def validate(self, data):
-        if data['password'] != data['password_confirm']:
-            raise serializers.ValidationError({"password": "Passwords do not match."})
-        return data
+        fields = ['id', 'email', 'password', 'first_name', 'last_name']
+        
 
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
@@ -39,17 +37,39 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', '')
         )
+        # Assign default group 'Client'
+        client_group = Group.objects.get(name='Client')
+        user.groups.add(client_group)
         return user
 
-# Serializer for user's management
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'role']
-        read_only_fields = ['role']
 
-# Serializer for user's role update by admin
-class AdminUpdateRoleSerializer(serializers.ModelSerializer):
+# --- Serializer for user details ---
+class UserSerializer(serializers.ModelSerializer):
+    groups = serializers.SlugRelatedField(
+        many=True, slug_field='name', read_only=True
+    )
+
     class Meta:
         model = User
-        fields = ['role']
+        fields = ['id', 'email', 'first_name', 'last_name', 'groups']
+
+
+# --- Serializer for assigning group by admin/manager ---
+class AdminAssignGroupSerializer(serializers.ModelSerializer):
+    group = serializers.SlugRelatedField(
+        queryset=Group.objects.all(),
+        slug_field='name',
+        write_only=True
+    )
+
+    class Meta:
+        model = User
+        fields = ['group']
+
+    def update(self, instance, validated_data):
+        group = validated_data.get('group')
+        # Remove all existing groups and assign the new one
+        instance.groups.clear()
+        instance.groups.add(group)
+        instance.save()
+        return instance

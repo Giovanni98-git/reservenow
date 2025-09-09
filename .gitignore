@@ -5,6 +5,7 @@ __pycache__/
 *.py[cod]
 .env
 .vscode
+permissions.md
 api.http
 # C extensions
 *.so

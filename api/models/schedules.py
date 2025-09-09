@@ -7,8 +7,7 @@ class Schedule(models.Model):
     end_time = models.TimeField()
 
     def is_open(self, date_time):
-        
-        return self.opening_time <= date_time.time() <= self.closing_time
+        return self.start_time <= date_time.time() <= self.end_time
 
     def __str__(self):
-        return f"schedule for {self.day}"
+        return f"Schedule for {self.day}"
