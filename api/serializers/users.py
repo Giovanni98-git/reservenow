@@ -17,11 +17,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 # --- Serializer for registration ---
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    password_confirm = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'password', 'first_name', 'last_name']
+        fields = ['pk', 'email', 'password', 'first_name', 'last_name']
         
 
     def validate_email(self, value):
@@ -30,7 +29,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        validated_data.pop('password_confirm')
         user = User.objects.create_user(
             email=validated_data['email'],
             password=validated_data['password'],
@@ -51,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'groups']
+        fields = ['pk', 'email', 'first_name', 'last_name', 'groups']
 
 
 # --- Serializer for assigning group by admin/manager ---

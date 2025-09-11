@@ -165,6 +165,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.User'
 
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]

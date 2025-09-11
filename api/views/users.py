@@ -1,7 +1,11 @@
 from rest_framework import generics, permissions
 from drf_yasg.utils import swagger_auto_schema
 from api.models import User
-from api.serializers import RegisterSerializer, UserSerializer, AdminAssignGroupSerializer
+from api.serializers import RegisterSerializer, UserSerializer, AdminAssignGroupSerializer, CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 # --- User Registration ---
 class RegisterView(generics.CreateAPIView):

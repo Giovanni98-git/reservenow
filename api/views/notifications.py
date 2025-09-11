@@ -26,7 +26,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
         if user.is_superuser or user.groups.filter(name__in=['Manager', 'Admin']).exists():
             return Notification.objects.all()
         # Clients can only see notifications linked to them
-        return Notification.objects.filter(user=user)
+        return Notification.objects.filter(user_id=user.id)
 
     def perform_create(self, serializer):
         """

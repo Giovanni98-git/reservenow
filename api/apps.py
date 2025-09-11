@@ -5,5 +5,4 @@ class MyAppConfig(AppConfig):
     name = "api"
 
     def ready(self):
-        # Import signals to ensure they are registered
-        import api.signals
+        import api.signals  # Importez vos signaux ici
