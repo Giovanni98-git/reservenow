@@ -49,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['pk', 'email', 'first_name', 'last_name', 'groups']
+        fields = ['id', 'email', 'first_name', 'last_name', 'groups']
 
 
 # --- Serializer for assigning group by admin/manager ---
