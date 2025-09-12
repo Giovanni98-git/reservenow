@@ -1,4 +1,4 @@
-from .users import UserSerializer, AdminUpdateRoleSerializer, RegisterSerializer
+from .users import UserSerializer, AdminAssignGroupSerializer, RegisterSerializer, CustomTokenObtainPairSerializer
 from .tableSaloons import TableSaloonSerializer
 from .reservations import ReservationSerializer
 from .menus import MenuSerializer

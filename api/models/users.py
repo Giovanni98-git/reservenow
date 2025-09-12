@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError("L'email est requis.")
+            raise ValueError("email is required.")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -12,37 +13,28 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('role', 'admin')  # Superutilisateur est admin par défaut
+        """Créer un superutilisateur avec les droits admin."""
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
 
-        if extra_fields.get('role') != 'admin':
-            raise ValueError("A superuser must have the role 'admin'.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
 
         return self.create_user(email, password, **extra_fields)
 
-class User(AbstractBaseUser, PermissionsMixin):
-    ROLE_CHOICES = (
-        ('client', 'Client'),
-        ('admin', 'Admin'),
-    )
+
+class User(AbstractUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='client')
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     def __str__(self):
         return self.email
-
-    @property
-    def is_staff(self):
-        """Determines access to the admin interface based on the user's role."""
-        return self.role == 'admin'
-
-    @property
-    def is_active(self):
-        """All users are active by default."""
-        return True
