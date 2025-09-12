@@ -193,11 +193,19 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
-    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),   # Durée de vie du token d'accès
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),      # Durée de vie du refresh token
+    "ROTATE_REFRESH_TOKENS": False,                   # Ne pas régénérer de refresh automatiquement
+    "BLACKLIST_AFTER_ROTATION": True,                 # Invalider l'ancien refresh si rotation
+    "ALGORITHM": "HS256",                             # Algorithme de signature
+    "SIGNING_KEY": SECRET_KEY,                        # Clé secrète Django (ou une autre clé)
+    "AUTH_HEADER_TYPES": ("Bearer",),                 # Format d'en-tête : Authorization: Bearer <token>
+    
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    # 'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
+    # 'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
 }
 
 """Les sliding tokens offrent une expérience plus pratique aux utilisateurs de jetons, 
