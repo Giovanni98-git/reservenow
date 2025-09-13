@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -190,3 +191,29 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 1
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),   # Durée de vie du token d'accès
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),      # Durée de vie du refresh token
+    "ROTATE_REFRESH_TOKENS": False,                   # Ne pas régénérer de refresh automatiquement
+    "BLACKLIST_AFTER_ROTATION": True,                 # Invalider l'ancien refresh si rotation
+    "ALGORITHM": "HS256",                             # Algorithme de signature
+    "SIGNING_KEY": SECRET_KEY,                        # Clé secrète Django (ou une autre clé)
+    "AUTH_HEADER_TYPES": ("Bearer",),                 # Format d'en-tête : Authorization: Bearer <token>
+    
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    # 'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    # 'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
+    # 'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+}
+
+"""Les sliding tokens offrent une expérience plus pratique aux utilisateurs de jetons, 
+mais ils sont moins sécurisés et, dans le cas où l'application de liste noire est utilisée, 
+moins performants. Un jeton glissant est un jeton qui contient à la fois une revendication 
+d'expiration et une revendication d'expiration de rafraîchissement. Tant que l'horodatage 
+de la revendication d'expiration d'un jeton glissant n'est pas dépassé, celui-ci peut être 
+utilisé pour prouver l'authentification. De plus, tant que l'horodatage de sa revendication 
+d'expiration de rafraîchissement n'est pas dépassé, il peut également être soumis à une vue 
+de rafraîchissement pour obtenir une autre copie de lui-même avec une revendication d'expiration 
+renouvelée."""
