@@ -1,12 +1,13 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from datetime import time  # Import ajouté pour les valeurs par défaut
 from .users import User
 from .tableSaloons import TableSaloon
 
 class Reservation(models.Model):
     date = models.DateField()
-    start = models.TimeField()
-    end = models.TimeField()
+    start = models.TimeField(default=time(18, 0))  # Par défaut : 18h00
+    end = models.TimeField(default=time(20, 0))    # Par défaut : 20h00
     people_count = models.PositiveIntegerField()
     status = models.CharField(
         max_length=20,
