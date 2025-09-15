@@ -23,7 +23,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
         - Clients see only their own notifications.
         """
         user = self.request.user
-        if user.is_superuser or user.groups.filter(name__in=['Manager', 'Admin']).exists():
+        if user.is_superuser or user.groups.filter(name__in=['Manager']).exists():
             return Notification.objects.all()
         # Clients can only see notifications linked to them
         return Notification.objects.filter(user_id=user.id)

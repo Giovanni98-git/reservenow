@@ -10,6 +10,6 @@ class IsManagerOrAdmin(BasePermission):
             and request.user.is_authenticated
             and (
                 request.user.is_superuser
-                or request.user.groups.filter(name__in=['Manager', 'Admin']).exists()
+                or request.user.groups.filter(name__in=['Manager']).exists()
             )
         )

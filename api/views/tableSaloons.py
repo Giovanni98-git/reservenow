@@ -22,7 +22,7 @@ def table_saloons_list(request):
 
     elif request.method == 'POST':
         # Only Manager/Admin or superuser can create
-        if not request.user.groups.filter(name__in=['Manager', 'Admin']).exists() and not request.user.is_superuser:
+        if not request.user.groups.filter(name__in=['Manager']).exists() and not request.user.is_superuser:
             return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TableSaloonSerializer(data=request.data)
