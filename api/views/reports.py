@@ -14,7 +14,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     """
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
 
     def get_queryset(self):
         """

@@ -19,10 +19,10 @@ def ensure_permissions_and_groups(sender, **kwargs):
         view_schedule = Permission.objects.get(codename="view_schedule")
         
     except Permission.DoesNotExist:
-        # if permissions are not found, exit the function
+        # If permissions are not found, exit the function
         return
 
-    # ===  Client's group ===
+    # === Client's group ===
     client_group, _ = Group.objects.get_or_create(name="Client")
     client_group.permissions.set([
         view_menu,
@@ -31,12 +31,8 @@ def ensure_permissions_and_groups(sender, **kwargs):
         delete_reservation,
         view_tablesaloon,
         view_schedule,
-       
     ])
 
     # === Manager's group ===
     manager_group, _ = Group.objects.get_or_create(name="Manager")
     manager_group.permissions.set(Permission.objects.all())
-
-    # === Admin's group ===
-    Group.objects.get_or_create(name="Admin")

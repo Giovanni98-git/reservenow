@@ -7,4 +7,12 @@ class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
         fields = '__all__'
-        read_only_fields = ['user_email']
+        read_only_fields = ['user', 'user_email']
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().update(instance, validated_data)

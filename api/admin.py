@@ -55,7 +55,7 @@ class TableSaloonAdmin(admin.ModelAdmin):
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user', 'table_saloon', 'date')
+    list_display = ('pk', 'user', 'table_saloon', 'date', 'start', 'end', 'people_count', 'status')
     search_fields = ('user__email',)
 
 @admin.register(Menu)
@@ -66,15 +66,15 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user', 'message')
+    list_display = ('id', 'user', 'message')
     search_fields = ('user__email', 'message')
 
 @admin.register(Report)
 class ReportAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user')
+    list_display = ('id', 'user')
     search_fields = ('user__email',)
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'start_time', 'end_time')
+    list_display = ('id', 'start_time', 'end_time')
     search_fields = ()
