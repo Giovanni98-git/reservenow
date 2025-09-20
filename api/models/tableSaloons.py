@@ -3,6 +3,7 @@ from django.db import models
 class TableSaloon(models.Model):
     capacity = models.PositiveIntegerField()
     name = models.CharField(max_length=255, null=False)
+    img = models.TextField(blank=True)
     type = models.CharField(
         max_length=20,
         choices=[("table", "Table"), ("saloon", "Saloon")]

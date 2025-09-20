@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import DjangoModelPermissions, IsAuthenticated
+from rest_framework import serializers
 from drf_yasg.utils import swagger_auto_schema
 from api.models import Reservation
 from api.serializers import ReservationSerializer
@@ -14,12 +15,22 @@ class ReservationViewSet(viewsets.ModelViewSet):
     """
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        """
+        Allow create action with only IsAuthenticated, others require DjangoModelPermissions.
+        """
+        if self.action in ['list', 'retrieve', 'update', 'destroy']:
+            return [IsAuthenticated(), DjangoModelPermissions()]
+        return [IsAuthenticated()]
 
     def perform_create(self, serializer):
         """
         Automatically assign the current authenticated user as the reservation owner.
         """
+        if not self.request.user.is_authenticated:
+            raise serializers.ValidationError({"user": "Utilisateur non authentifié."})
         serializer.save(user=self.request.user)
 
     @swagger_auto_schema(responses={200: ReservationSerializer(many=True)})

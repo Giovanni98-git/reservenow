@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Table 1",
+    "capacity": 2,
+    "type": "table",
+    "status": "available",
+    "img": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "name": "Table 2",
+    "capacity": 2,
+    "type": "table",
+    "status": "available",
+    "img": "https://images.unsplash.com/photo-1519996529931-28324d5a630e?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "name": "Table 3",
+    "capacity": 4,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/table-restaurant-nappe-dentelle-blanche-serviettes-bleues_6317252.htm#fromView=keyword&page=1&position=4&uuid=9624154a-2464-4b8e-b214-31ff3875e345&query=Tables+restaurant"
+  },
+  {
+    "name": "Table 4",
+    "capacity": 4,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/table-pour-quatre-personnes-devant-fenetre-du-restaurant_6316977.htm#fromView=search&page=1&position=13&uuid=438ae66b-736f-442e-af96-f1b76c060dcd&query=Tables+restaurant+free"
+  },
+  {
+    "name": "Table 5",
+    "capacity": 6,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/table-manger-chaises-vaisselle_7607770.htm#fromView=search&page=1&position=49&uuid=6ec291a9-e036-4f28-997e-8842ce0d26ce&query=Restaurant+salle+free"
+  },
+  {
+    "name": "Table 6",
+    "capacity": 6,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/table-manger-chaises-vaisselle_7607770.htm#fromView=search&page=1&position=49&uuid=6ec291a9-e036-4f28-997e-8842ce0d26ce&query=Restaurant+salle+free"
+  },
+  {
+    "name": "Table 7",
+    "capacity": 8,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/vue-angle-eleve-table-decor-elegant-dans-salle-du-restaurant-soir_11541171.htm#fromView=search&page=3&position=17&uuid=49c522e0-a704-4e0f-be4b-e931d6e4b7f7&query=Restaurant+table"
+  },
+  {
+    "name": "Table 8",
+    "capacity": 8,
+    "type": "table",
+    "status": "available",
+    "img": "https://images.unsplash.com/photo-1519996529931-28324d5a630e?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "name": "Table 9",
+    "capacity": 10,
+    "type": "table",
+    "status": "available",
+    "img": "https://images.unsplash.com/photo-1617196034799-3454709e5796?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "name": "Table 10",
+    "capacity": 12,
+    "type": "table",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/salle-privee-du-restaurant-murs-pierre-blanche-chaises-brunes_7734793.htm#fromView=search&page=2&position=29&uuid=03a2d09a-3ec4-42d7-ba50-4cbb16231731&query=Restaurant+salle+free+25+personnes"
+  },
+  {
+    "name": "Saloon VIP 1",
+    "capacity": 20,
+    "type": "saloon",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/salle-restaurant-murs-briques-rouges-tables-bois-tuyaux-au-plafond_7734844.htm#fromView=search&page=1&position=0&uuid=ff9dc87b-890c-4e3d-ba4b-718fb9265706&query=Restaurant+salle"
+  },
+  {
+    "name": "Saloon VIP 2",
+    "capacity": 25,
+    "type": "saloon",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/plats-mariage-elegants_3626236.htm#fromView=search&page=1&position=22&uuid=03a2d09a-3ec4-42d7-ba50-4cbb16231731&query=Restaurant+salle+free+25+personnes"
+  },
+  {
+    "name": "Saloon Private",
+    "capacity": 15,
+    "type": "saloon",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/salle-restaurant-chaises-bleues-decors-au-mur_7608176.htm#fromView=search&page=1&position=3&uuid=ff9dc87b-890c-4e3d-ba4b-718fb9265706&query=Restaurant+salle"
+  },
+  {
+    "name": "Saloon Garden",
+    "capacity": 30,
+    "type": "saloon",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/salle-restaurant-tables-rondes-carrees-quelques-chaises-plantes_7608179.htm#fromView=search&page=1&position=10&uuid=ff9dc87b-890c-4e3d-ba4b-718fb9265706&query=Restaurant+salle"
+  },
+  {
+    "name": "Saloon Terrace",
+    "capacity": 40,
+    "type": "saloon",
+    "status": "available",
+    "img": "https://fr.freepik.com/photos-gratuite/salle-restaurant-style-classique-chaises-bois-vert-rideaux_7608174.htm#fromView=search&page=1&position=30&uuid=ff9dc87b-890c-4e3d-ba4b-718fb9265706&query=Restaurant+salle"
+  }
+]

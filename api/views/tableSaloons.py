@@ -9,7 +9,6 @@ from api.serializers import TableSaloonSerializer
 @swagger_auto_schema(method='GET', responses={200: TableSaloonSerializer(many=True)})
 @swagger_auto_schema(method='POST', request_body=TableSaloonSerializer, responses={201: TableSaloonSerializer})
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
 def table_saloons_list(request):
     """
     GET: List all tables and saloons (accessible to all authenticated users).
@@ -22,7 +21,7 @@ def table_saloons_list(request):
 
     elif request.method == 'POST':
         # Only Manager/Admin or superuser can create
-        if not request.user.groups.filter(name__in=['Manager']).exists() and not request.user.is_superuser:
+        if not request.user.groups.filter(name__in=['Manager']).exists() and not request.user.is_superuser and not request.user.is_authenticated:
             return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TableSaloonSerializer(data=request.data)
@@ -52,7 +51,7 @@ def table_saloon_detail(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        if not request.user.groups.filter(name__in=['Manager', 'Admin']).exists() and not request.user.is_superuser:
+        if not request.user.groups.filter(name__in=['Manager']).exists() and not request.user.is_superuser:
             return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TableSaloonSerializer(table, data=request.data)
@@ -62,7 +61,7 @@ def table_saloon_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        if not request.user.groups.filter(name__in=['Manager', 'Admin']).exists() and not request.user.is_superuser:
+        if not request.user.groups.filter(name__in=['Manager']).exists() and not request.user.is_superuser:
             return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
 
         table.delete()

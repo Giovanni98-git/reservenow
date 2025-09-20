@@ -78,7 +78,6 @@ class AdminAssignGroupView(generics.UpdateAPIView):
     """
     API endpoint to assign a group to a user.
     Only Managers or Admins can assign groups.
-    Only superusers can assign the Admin group.
     """
     queryset = User.objects.all()
     serializer_class = AdminAssignGroupSerializer
@@ -102,7 +101,7 @@ class AdminAssignGroupView(generics.UpdateAPIView):
             raise PermissionError("Only superusers can assign the Admin group.")
 
         # Ensure the current user is Manager/Admin or superuser
-        if not self.request.user.groups.filter(name__in=['Manager', 'Admin']).exists() and not self.request.user.is_superuser:
+        if not self.request.user.groups.filter(name__in=['Manager']).exists() and not self.request.user.is_superuser:
             raise PermissionError("Only Managers or Admins can assign groups.")
 
         serializer.save()

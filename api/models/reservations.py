@@ -13,8 +13,8 @@ from .tableSaloons import TableSaloon
 
 class Reservation(models.Model):
     date = models.DateField()
-    start = models.TimeField()  # Valeur par défaut
-    end = models.TimeField()   # Valeur par défaut
+    start = models.TimeField()  
+    end = models.TimeField()
     people_count = models.PositiveIntegerField()
     status = models.CharField(
         max_length=20,
