@@ -12,10 +12,9 @@ from api.permissions import IsManagerOrAdmin
 
 class MenuListCreateView(APIView):
     """
-    GET : Liste tous les menus (authentifié requis).
+    GET : Liste tous les menus
     POST : Crée un menu (Manager/Admin uniquement).
     """
-    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(responses={200: MenuSerializer(many=True)})
     def get(self, request):

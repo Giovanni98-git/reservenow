@@ -5,3 +5,4 @@ class TableSaloonSerializer(serializers.ModelSerializer):
     class Meta:
         model = TableSaloon
         fields = '__all__'
+        

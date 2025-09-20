@@ -21,7 +21,7 @@ class ReportViewSet(viewsets.ModelViewSet):
         Restrict access to users in the 'Manager' or 'Admin' groups, or superusers.
         """
         user = self.request.user
-        if user.is_superuser or user.groups.filter(name__in=['Manager', 'Admin']).exists():
+        if user.is_superuser or user.groups.filter(name__in=['Manager']).exists():
             return Report.objects.all()
         return Report.objects.none()  # no access for other users
 
@@ -36,7 +36,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         """
         List all reports.
-        Accessible only to Managers, Admins, or superusers.
+        Accessible only to Managers or superusers.
         """
         return super().list(request, *args, **kwargs)
 
@@ -44,7 +44,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         """
         Retrieve a specific report.
-        Accessible only to Managers, Admins, or superusers.
+        Accessible only to Managers or superusers.
         """
         return super().retrieve(request, *args, **kwargs)
 
@@ -52,7 +52,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         """
         Create a new report.
-        Accessible only to Managers, Admins, or superusers.
+        Accessible only to Managers or superusers.
         """
         return super().create(request, *args, **kwargs)
 
@@ -60,7 +60,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         """
         Update a report.
-        Accessible only to Managers, Admins, or superusers.
+        Accessible only to Managers or superusers.
         """
         return super().update(request, *args, **kwargs)
 
@@ -68,6 +68,6 @@ class ReportViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         """
         Delete a report.
-        Accessible only to Managers, Admins, or superusers.
+        Accessible only to Managers or superusers.
         """
         return super().destroy(request, *args, **kwargs)
