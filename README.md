@@ -56,6 +56,7 @@ DATABASE_PASSWORD=votre_mot_de_passe
 DATABASE_HOST=localhost
 DATABASE_PORT=5432
 SECRET_KEY=votre_cle_secrete_django
+CORS_ALLOWED_ORIGINS=
 ```
 
 Remplacez votre_utilisateur, votre_mot_de_passe, et votre_cle_secrete_django par vos propres valeurs. Vous pouvez générer une clé secrète Django avec un générateur en ligne ou via un script Python.

@@ -178,29 +178,37 @@ SWAGGER_SETTINGS = {
 }
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
-    "http://localhost:8000",  # Pour Swagger/tests locaux
+CORS_ALLOWED_ORIGINS = []
+
+cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', '')
+if cors_origins:
+    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins.split(',')]
+else:
+    # Valeurs par défaut si la variable d'environnement n'est pas définie
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000", 
+        "http://localhost:5173",
+        "http://localhost:8000",
+    ]
+
+CORS_ALLOWED_CREDENTIALS = True
+CORS_ALLOWED_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
-# CORS_ALLOWED_CREDENTIALS = True
-# CORS_ALLOWED_METHODS = [
-#     "DELETE",
-#     "GET",
-#     "OPTIONS",
-#     "PATCH",
-#     "POST",
-#     "PUT",
-# ]
-# CORS_ALLOW_HEADERS = [
-#     "accept",
-#     "authorization",
-#     "content-type",
-#     "user-agent",
-#     "x-csrftoken",
-#     "x-requested-with",
-# ]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 
 REST_FRAMEWORK = {
@@ -222,12 +230,6 @@ SIMPLE_JWT = {
     "ALGORITHM": "HS256",                             # Algorithme de signature
     "SIGNING_KEY": SECRET_KEY,                        # Clé secrète Django (ou une autre clé)
     "AUTH_HEADER_TYPES": ("Bearer",),                 # Format d'en-tête : Authorization: Bearer <token>
-    
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    # 'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
-    # 'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
-    # 'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
 }
 
 """Les sliding tokens offrent une expérience plus pratique aux utilisateurs de jetons, 
