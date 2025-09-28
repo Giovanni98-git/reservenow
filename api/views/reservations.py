@@ -37,7 +37,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
             return queryset
         
         # Les utilisateurs normaux ne voient que leurs réservations
-        return queryset.filter(user__=self.request.user.id)
+        return queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
         """
@@ -114,7 +114,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
         if getattr(self, 'swagger_fake_view', False):
             return Response([])
             
-        reservations = Reservation.objects.filter(user__id=request.user.id)
+        reservations = Reservation.objects.filter(user_id=request.user.id)
         page = self.paginate_queryset(reservations)
         
         if page is not None:
@@ -145,7 +145,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
         if not (request.user.is_staff or 
                 request.user.is_superuser or 
                 request.user.groups.filter(name='Manager').exists()):
-            reservations = reservations.filter(user__id=request.user.id)
+            reservations = reservations.filter(user_id=request.user.id)
         
         page = self.paginate_queryset(reservations)
         if page is not None:
@@ -176,7 +176,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
         if not (request.user.is_staff or 
                 request.user.is_superuser or 
                 request.user.groups.filter(name='Manager').exists()):
-            reservations = reservations.filter(user__id=request.user.id)
+            reservations = reservations.filter(user_id=request.user.id)
         
         page = self.paginate_queryset(reservations)
         if page is not None:
@@ -204,7 +204,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
         if not (request.user.is_staff or 
                 request.user.is_superuser or 
                 request.user.groups.filter(name='Manager').exists()):
-            reservations = reservations.filter(user__id=request.user.id)
+            reservations = reservations.filter(user_id=request.user.id)
         
         page = self.paginate_queryset(reservations)
         if page is not None:
