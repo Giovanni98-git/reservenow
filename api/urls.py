@@ -1,9 +1,6 @@
 from rest_framework.routers import DefaultRouter
 from api.views import (
     ReservationViewSet,
-    NotificationViewSet,
-    ReportViewSet,
-    ScheduleViewSet,
     RegisterView,
     UserDetailView,
     UserListView,
@@ -17,8 +14,6 @@ from api.views import (
     DemoteFromManagerView,
     ChangePasswordView,
     DeactivateAccountView,
-    MenuListCreateView,
-    MenuDetailView,
     table_saloons_list,
     table_saloon_detail
 )
@@ -51,10 +46,6 @@ urlpatterns = [
     path('users/<int:pk>/demote/manager/', DemoteFromManagerView.as_view(), name='demote_from_manager'),
     path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='user_delete'),
 
-    # Menu endpoints
-    path('menus/', MenuListCreateView.as_view(), name='menu-list-create'),
-    path('menus/<int:pk>/', MenuDetailView.as_view(), name='menu-detail'),
-
     # TableSaloon endpoints
     path('tablesaloons/', table_saloons_list, name='tablesaloons-list-create'),
     path('tablesaloons/<int:pk>/', table_saloon_detail, name='tablesaloons-detail'),
@@ -63,9 +54,6 @@ urlpatterns = [
 # ViewSets with router
 router = DefaultRouter()
 router.register('reservations', ReservationViewSet, basename='reservations')
-router.register('notifications', NotificationViewSet, basename='notifications')
-router.register('reports', ReportViewSet, basename='reports')
-router.register('schedules', ScheduleViewSet, basename='schedules')
 
 # Combine router URLs with urlpatterns
 urlpatterns += router.urls

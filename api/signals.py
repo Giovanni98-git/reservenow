@@ -11,7 +11,6 @@ def ensure_permissions_and_groups(sender, **kwargs):
 
     # Permissions for Client
     try:
-        view_menu = Permission.objects.get(codename="view_menu")
         add_reservation = Permission.objects.get(codename="add_reservation")
         change_reservation = Permission.objects.get(codename="change_reservation")
         delete_reservation = Permission.objects.get(codename="delete_reservation")
@@ -25,7 +24,6 @@ def ensure_permissions_and_groups(sender, **kwargs):
     # === Client's group ===
     client_group, _ = Group.objects.get_or_create(name="Client")
     client_group.permissions.set([
-        view_menu,
         add_reservation,
         change_reservation,
         delete_reservation,
